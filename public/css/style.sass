@@ -1,0 +1,1768 @@
+/* start */
+// Эффект тряски при наведении на кнопку "Add to cart" на странице товара.
+@keyframes shake-bottom
+	0%,
+	100%
+		transform: rotate(0deg)
+		transform-origin: 50% 100%
+	10% 
+		transform: rotate(2deg)
+	20%,
+	40%,
+	60% 
+		transform: rotate(-4deg) 
+	30%,
+	50%,
+	70% 
+		transform: rotate(4deg) 
+	80% 
+		transform: rotate(-2deg)
+	90% 
+		transform: rotate(2deg)
+		
+/* error message */
+// Стили компонента vcomp_error.
+.error-msg
+	padding: 30px 20px
+	background-color: red
+	color: white
+	position: relative
+	
+.error-block
+	background-color: rgba(0,0,0, .5)
+	justify-content: center
+	display: flex
+	position: absolute
+	top: 0
+	width: 100%
+	height: 100%
+	align-items: center
+
+/* range style */
+// Стили элементов фильтрации типа "range" на странице товаров одной главной категории.
+input.range_min[type='range']
+	overflow: hidden
+	-webkit-appearance: none
+	background-color: #f3f3f3
+	
+input.range_min[type='range']::-webkit-slider-runnable-track
+	height: 15px
+	-webkit-appearance: none
+	color: #f3f3f3
+	margin-top: -1px    
+
+input.range_min[type='range']::-webkit-slider-thumb
+	width: 20px
+	-webkit-appearance: none
+	height: 20px
+	cursor: ew-resize
+	background: #434343
+	box-shadow: 140px 0 0 140px #f16d7f
+	
+input.range_max[type='range']
+	overflow: hidden
+	-webkit-appearance: none
+	background-color: #f3f3f3  
+ 
+input.range_max[type='range']::-webkit-slider-runnable-track
+	height: 15px
+	-webkit-appearance: none
+	color: #f16d7f
+	margin-top: -1px    
+
+input.range_max[type='range']::-webkit-slider-thumb
+	width: 20px
+	-webkit-appearance: none
+	height: 20px
+	cursor: ew-resize
+	background: #434343
+	box-shadow: -140px 0 0 140px #f16d7f
+
+/* main */
+// Основные настройки стилей.
+* 
+	margin: 0
+	padding: 0
+
+body 
+	font-family: 'Lato', sans-serif
+
+a 
+	text-decoration: none
+	cursor: pointer
+
+.center 
+	padding: 0 230px
+	margin: 0 calc(50% - 800px)
+
+.center__big 
+	margin: 0 calc(50% - 800px)
+
+span.colortext 
+	color: #f16d7f
+
+span.bold 
+	font-weight: 400
+
+li 
+	list-style-type: none
+	
+input
+	outline-style: none
+
+span.grey 
+	color: #b9b9b9
+	
+span.red
+	color: #ff0d0d
+	font-size: 17px
+	
+.display_none
+	display: none
+
+/* index.html -start- */
+/* header.header */
+// Стили компонента vcomp_header.
+.header 
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.17)
+	border: 1px solid #ececec
+	background-color: #ffffff
+	height: 100px
+	display: flex
+	justify-content: space-between
+	align-items: center
+	&__left 
+		display: flex
+		align-items: center
+	&__right 
+		display: flex
+		align-items: center
+	&__form 
+		display: flex
+		align-items: center
+		margin-left: 37px
+		&__input 
+			width: 270px
+			height: 38px
+			border-radius: 0 3px 3px 0
+			border: 1px solid #e6e6e6
+			background-color: #ffffff
+			color: #a4a4a4
+			font-size: 14px
+			font-weight: 300
+			line-height: 38px
+			letter-spacing: 0.35px
+			text-indent: 16px
+			padding-right: 10px
+	&__cart
+		margin-right: 26px
+
+.logo
+	color: #222222
+	display: flex
+	align-items: center
+	font-size: 27px
+	font-weight: 300
+	text-transform: uppercase
+	letter-spacing: 0.68px
+	&__img
+		margin-right: 13px	
+
+.button__account 
+	margin: 0 auto
+	display: block
+	font-size: 16px
+	font-weight: 400
+	letter-spacing: 0.38px
+	color: rgba(255, 255, 255, 255)
+	width: 130px
+	height: 38px
+	background-color: #f16d7f
+	text-align: center
+	line-height: 38px
+
+.button__browse__form 
+	display: block
+	font-size: 14px
+	font-weight: 300
+	color: #222222
+	letter-spacing: 0.35px
+	line-height: 38px
+	text-align: center
+	width: 87px
+	height: 38px
+	border-radius: 3px 0 0 3px
+	border: 1px solid #e6e6e6
+	background-color: #cdcdcc
+	background-image: linear-gradient(to bottom, #f9f9f9 0%, #f5f5f5 100%)
+
+.button__submit__form 
+	display: block
+	width: 40px
+	height: 38px
+	background-color: #ffffff
+	line-height: 38px
+	text-align: center
+	border-radius: 0 3px 3px 0
+	border: 1px solid #e6e6e6
+	transition: all 0.3s
+
+/* nav */
+// Стили компонента vcomp_nav.
+.menu 
+	list-style-type: none
+	display: flex
+	justify-content: center
+	height: 58px
+	&__link 
+		color: #222222
+		font-size: 14px
+		font-weight: 700
+		text-transform: uppercase
+		padding: 20px
+		display: block
+		&__active 
+			border-bottom: 3px solid #f16d7f
+	&__link:hover 
+		border-bottom: 3px solid #f16d7f
+	&__list
+		position: relative
+	&__list:hover .drop 
+		display: flex
+		flex-flow: column wrap
+	
+.drop::before
+	content: ''
+	width: 12px
+	height: 12px
+	background-color: #fff
+	position: absolute
+	top: -7px
+	left: 35px
+	transform: rotate(45deg)
+	border-top: 1px solid #e8e8e8
+	border-left: 1px solid #e8e8e8
+
+.drop
+	position: absolute
+	z-index: 1
+	border-radius: 5px
+	background-color: #ffffff
+	border: 1px solid #ececec
+	padding: 12px 20px
+	display: none
+	top: 48px
+	left: -5px
+	max-height: 300px
+	width: 570px
+	&_last
+		right: 0
+		left: auto
+	&_last::before 
+		right: 45px
+		left: auto
+	&__h3
+		border-bottom: 1px solid #e8e8e8
+		color: #232323
+		font-size: 14px
+		font-weight: 400
+		text-transform: uppercase
+		letter-spacing: 0.35px
+		padding-bottom: 8px
+		margin-bottom: 8px
+		padding-top: 8px
+	&__link
+		color: #646464
+		font-size: 14px
+		font-weight: 400
+		letter-spacing: 0.35px
+		line-height: 28px
+	&__link:hover
+		color: #f16d7f
+	&__ul
+		list-style-type: none
+
+.drop-flex
+	width: 235px
+	margin-right: 46px
+
+.drop-flex:last-of-type 
+	margin-right: 0
+	
+// Стили компонента vcomp_home.
+/* div.promo */
+
+.promo 
+	background-color: #e8e8e8
+	height: 613px
+	&__content 
+		background-image: url(../img/layers/Layer_24.jpg)
+		height: 100%
+		background-repeat: no-repeat
+		background-position: 0 -50px
+		display: flex
+		align-items: center
+	&__text
+		border-left: 12px solid #f16d7f
+		padding-left: 12px
+		&__bold
+			font-size: 60px
+			letter-spacing: 1.5px
+			font-weight: 400
+			text-transform: uppercase
+			color: rgba(34, 34, 34, 255)
+			line-height: 45px
+		&__casual
+			font-size: 40px
+			font-weight: 400
+			letter-spacing: 1px
+			color: rgba(34, 34, 34, 255)
+			line-height: 30px
+			margin-top: 15px
+
+/* section.stock */
+
+.stock 
+	display: flex
+	align-items: center
+	height: 823px
+	flex-wrap: wrap
+	flex-direction: column
+	justify-content: space-between
+	align-content: space-between
+	margin-top: 100px
+	&__text
+		display: inline-block
+		margin-top: 25px
+		background-color: white
+		color: rgba(34, 34, 34, 255)
+		transition: all 0.3s
+		&__black
+			font-size: 18px
+			font-weight: 400
+			letter-spacing: 0.45px
+			text-transform: uppercase
+			padding-top: 15px
+			padding-left: 20px
+			padding-right: 20px
+		&__pink
+			font-size: 30px
+			font-weight: 400
+			letter-spacing: 0.75px
+			color: #f16d7f
+			padding-bottom: 15px
+			padding-left: 20px
+			padding-right: 20px
+	&__text:hover
+		transform: translateX(5px)
+
+.hotDeal 
+	background-image: url(../img/layers/Layer_30.jpeg)
+	background-repeat: no-repeat
+	height: 542px
+	width: 560px
+
+.lux 
+	background-image: url(../img/layers/Layer_37.jpeg)
+	background-repeat: no-repeat
+	height: 261px
+	width: 560px
+	background-position: 160px -40px
+	background-color: #dadad2
+
+.offer 
+	background-image: url(../img/layers/Layer_32.jpeg)
+	background-repeat: no-repeat
+	height: 261px
+	width: 560px
+
+.new 
+	background-image: url(../img/layers/Layer_31.jpeg)
+	background-repeat: no-repeat
+	height: 542px
+	width: 560px
+
+/* section.featured */
+
+.featured
+	&__header
+		margin-top: 100px
+		text-align: center
+	&__head 
+		font-size: 30px
+		font-weight: 700
+		letter-spacing: 0.75px
+		color: rgba(34, 34, 34, 255)
+	&__text 
+		font-size: 14px
+		font-weight: 400
+		letter-spacing: 0.35px
+		color: #9f9f9f
+		margin-top: 16px
+
+.product-box 
+	margin-top: 60px
+	margin-bottom: 60px
+	display: flex
+	justify-content: space-between
+	flex-wrap: wrap
+
+.product 
+	width: 263px
+	height: 380px 
+	position: relative
+	margin-bottom: 39px
+	transition: all 0.3s
+	&__text
+		padding: 20px 13px
+	&__price 
+		color: #f16d7f
+		font-size: 16px
+		font-weight: 700
+		text-transform: uppercase
+		margin-top: 17px
+	&__name 
+		color: #222222
+		font-size: 13px
+		font-weight: 400
+		text-transform: uppercase
+	&__img 
+		width: 100%
+		height: 280px
+		transition: all 0.3s
+	&__add 
+		border: 1px solid #ffffff
+		color: #ffffff
+		font-size: 13px
+		font-weight: 700
+		width: 123px
+		height: 39px
+		display: none
+		justify-content: center
+		align-items: center
+		position: absolute
+		top: 98px
+		left: 70px
+		transition: all 0.3s
+	&__add:hover 
+		box-shadow: 0 0 5px #fff
+	&__add:active
+		box-shadow: 0 0 35px #fff
+
+.product:hover .product__add 
+	display: flex
+
+.product:hover .product__img 
+	filter: brightness(50%)
+
+.product:hover 
+	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16)
+
+
+.button__browse 
+	margin: 0 auto
+	display: block
+	font-size: 16px
+	font-weight: 700
+	letter-spacing: 0.4px
+	color: rgba(255, 255, 255, 255)
+	width: 212px
+	height: 48px
+	background-color: #f16d7f
+	text-align: center
+	line-height: 48px
+	transition: all 0.3s
+	
+.button__browse:hover
+	transform: translateX(10px)
+
+/* section.benefits */
+
+.benefits 
+	display: flex
+	flex-direction: column
+	flex-wrap: wrap
+	height: 531px
+	margin-top: 113px
+	margin-bottom: 100px
+	&__offer 
+		background-image: url(../img/layers/2-layers.jpg)
+		width: 767px
+		height: 100%
+	&__item 
+		width: 373px
+		height: 177px
+		background-color: #222224
+		display: flex
+	&__icon 
+		margin-top: 35px
+		margin-left: 35px
+	&__text 
+		margin-top: 35px
+		margin-left: 35px
+		margin-right: 35px
+	&__head 
+		color: #fbfbfb
+		font-size: 20px
+		font-weight: 700
+		letter-spacing: 0.5px
+	&__head:hover
+		text-decoration: underline
+	&__description 
+		color: #fbfbfb
+		font-size: 14px
+		font-weight: 300
+		line-height: 24px
+		letter-spacing: 0.35px
+		margin-top: 17px
+	&__offer__text 
+		margin-top: 146px
+		margin-left: 39px
+		&__bold
+			color: #ffffff
+			font-size: 54px
+			font-weight: 700
+			text-transform: uppercase
+			letter-spacing: 1.5px
+		&__casual
+			color: #ffffff
+			font-weight: 700
+			text-transform: uppercase
+			font-size: 32px
+			letter-spacing: 0.9px
+
+// Стили компонента vcomp_social.
+/* section.social*/
+
+.social 
+	height: 438px
+	background-image: url(../img/layers/3-layers.jpg)
+	background-repeat: no-repeat
+	background-position: center
+	display: flex
+	justify-content: space-between
+	background-color: #ececec 
+	&__left 
+		display: flex
+		flex-flow: row wrap
+		&__text 
+			margin-top: 123px
+			margin-left: 28px
+		&__feedback 
+			width: 386px
+			color: #222224
+			font-size: 16px
+			font-style: italic
+			line-height: 26px
+			letter-spacing: 0.4px
+			max-height: 45%
+			overflow: hidden 
+			min-height: 80px
+		&__name 
+			color: #f16d7f
+			font-size: 16px
+			font-weight: 700
+			letter-spacing: 0.4px
+			line-height: 26px
+			margin-top: 19px
+		&__location 
+			color: #222224
+			font-size: 12px
+			font-weight: 300
+			letter-spacing: 0.3px
+			line-height: 14px
+		&__slider 
+			display: flex
+			margin-top: 35px
+		&__slider:first-child 
+			margin-left: 0px
+		&__navigation 
+			display: block
+			width: 38px
+			margin-left: 13px
+			border-bottom: 4px solid #d6d6d6
+			padding: 5px 0
+			cursor: pointer
+			&__active 
+				border-bottom: 4px solid #f16d7f
+		&__navigation:hover 
+			border-bottom: 4px solid #f16d7f
+	&__right 
+		height: 180px
+		display: flex
+		flex-flow: column wrap
+		margin-top: 135px
+		justify-content: center
+		&__head 
+			width: 450px
+			color: #222224
+			font-weight: 400
+			font-size: 24px
+			letter-spacing: 0.6px
+			line-height: 54px
+			text-transform: uppercase
+			text-align: center
+		&__text 
+			width: 450px
+			color: #222224
+			font-size: 14px
+			font-weight: 400
+			letter-spacing: 0.35px
+			line-height: 24px
+			text-align: center
+		&__input 
+			width: 324px
+			height: 46px
+			border-radius: 23px 0 0 23px
+			background-color: #e1e1e1
+			text-indent: 28px
+			outline: none
+			padding-right: 10px
+			border: none
+			margin-right: -3px
+		&__button 
+			display: inline-block
+			width: 104px
+			height: 46px
+			border-radius: 0 23px 23px 0
+			background-color: #f16d7f
+			color: #ffffff
+			font-size: 14px
+			font-weight: 400
+			line-height: 46px
+			letter-spacing: 0.35px
+			text-align: center
+			border: none
+		&__answer
+			color: #f16d7f
+			padding-left: 20px
+			margin-top: 5px
+			font-size: 13px
+		&__form 
+			margin-top: 35px
+			width: 450px
+			height: 66px
+
+.subscriber__foto 
+	width: 82px
+	height: 82px
+	border-radius: 41px
+	display: block
+	margin-top: 111px
+
+// Стили компонента vcomp_nav-footer.
+/* nav.nav__footer */
+
+.nav__footer 
+	margin-top: 110px
+	display: flex
+	&__content 
+		margin-top: 29px
+		width: 427px
+		color: #898989
+		font-size: 14px
+		font-weight: 300
+		line-height: 24px
+		letter-spacing: 0.35px
+	&__company 
+		margin-left: 64px
+	&__head 
+		margin-top: 14px
+		color: #f16d7f
+		font-size: 18px
+		font-weight: 700
+		line-height: 26px
+		text-transform: uppercase
+		letter-spacing: 0.45px
+	&__list 
+		margin-top: 15px
+	&__link 
+		list-style-type: none
+		color: #898989
+		font-size: 16px
+		font-weight: 400
+		letter-spacing: 0.4px
+		line-height: 42px
+		&__link 
+			color: #898989
+		&__first 
+			line-height: 59px
+	&__company 
+		margin-left: 64px
+	&__information 
+		margin-left: 129px
+	&__shopcategory 
+		margin-left: 80px
+
+// Стили компонента vcomp_footer.
+/* footer.footer */
+
+.footer 
+	height: 79px
+	background-color: #e6e6e6
+	margin-top: 100px
+	&__content 
+		display: flex
+		justify-content: space-between
+		align-items: center
+		height: 100%
+	&__copyright 
+		color: #7a7a7a
+		font-size: 16px
+		font-weight: 400
+
+.social__links 
+	display: flex
+	justify-content: space-between
+
+.social__link 
+	display: flex
+	justify-content: center
+	align-items: center
+	width: 32px
+	height: 32px
+	color: #b2b2b2
+	background-color: #ffffff
+	font-size: 16px
+	font-weight: 400
+	letter-spacing: 0.4px
+	margin-left: 8px
+	transition: all 0.3s
+
+.social__link:hover 
+	color: #f7f7f8
+	background-color: #f16d7f
+
+/* index.html -end- */
+
+// Стили компонента vcomp_man.
+/* product_man.html -start- */
+
+/* .path__man */
+
+.path__man 
+	height: 148px
+	background-color: #f8f3f4
+	&__content 
+		display: flex
+		align-items: center
+		justify-content: space-between
+		height: 100%
+
+p.path__text 
+	color: #f16d7f
+	font-size: 24px
+	font-weight: 400
+	line-height: 20px
+	text-transform: uppercase
+
+nav.path 
+	display: flex
+
+nav.path :last-child 
+	color: #f16d7f
+	font-weight: 700
+
+a.path 
+	display: block
+	font-size: 14px
+	font-weight: 700
+	line-height: 20px
+	text-transform: uppercase
+	color: #636363
+	font-weight: 300
+
+/* section.benefits_man */
+
+.benefits__man 
+	display: flex
+	justify-content: space-between
+	align-items: center
+	height: 341px
+	margin-top: 113px
+	background-color: #222224
+
+.benefits__man:after section.social 
+	margin-top: 0
+
+.benefits__item__man 
+	height: 100%
+	display: flex
+	flex-flow: column wrap
+	align-items: center
+	justify-content: center
+
+.benefits__icon__man 
+	margin: 0
+
+.benefits__text__man 
+	margin-top: 32px
+
+.benefits__head 
+	color: #fbfbfb
+	font-size: 20px
+	font-weight: 700
+	letter-spacing: 0.5px
+	text-align: center
+	display: block
+
+.benefits__description 
+	color: #fbfbfb
+	font-size: 14px
+	font-weight: 300
+	line-height: 24px
+	letter-spacing: 0.35px
+	margin-top: 17px
+	text-align: center
+
+/* section.catalog */
+
+%catalog__viewall__button
+	display: block
+	width: 150px
+	height: 44px
+	border-radius: 3px
+	border: 1px solid #ef5b70
+	background-color: #ffffff
+	color: #ef5b70
+	font-size: 16px
+	font-weight: bold
+	line-height: 44px
+	text-align: center
+	transition: background-color 0.3s, color 0.3s
+	cursor: pointer
+
+%catalog__viewall__button-hover
+	color: #ffffff
+	background-color: #ef5b70
+
+.catalog 
+	display: flex
+	justify-content: space-between
+	margin-top: 60px
+	&__navigation 
+		width: 240px
+		&__details 
+			margin-top: 20px
+		&__item 
+			display: block
+			color: #6f6e6e
+			font-size: 14px
+			font-weight: 400
+			line-height: 33px
+			padding-left: 16px
+			cursor: pointer
+			&_active
+				background-color: #f8f3f4
+		&__item:hover 
+			text-decoration: underline
+		&__head 
+			color: #6f6e6e
+			font-size: 14px
+			font-weight: 700
+			text-transform: uppercase
+			height: 37px
+			line-height: 37px
+			border-left: 5px solid #ef5b70
+			border-bottom: 1px solid #f3f3f3
+			padding-left: 11px
+	&__navigation:first-child 
+		margin-top: -20px
+	&__goods 
+		display: flex
+		flex-flow: column wrap
+		width: 850px
+		&__features 
+			display: flex
+			justify-content: space-between
+		&__sorting 
+			display: flex
+			align-items: center
+			height: 50px
+			background-color: #f3f3f3
+			margin-top: 40px
+	&__viewall 
+		display: flex
+		justify-content: space-between
+		position: relative
+		&__pages 
+			display: flex
+			justify-content: space-around
+			align-items: center
+			width: 261px
+			height: 44px
+			border-radius: 3px
+			border: 1px solid #ebebeb
+			background-color: #ffffff
+		&__page 
+			display: block
+			color: #c4c4c4
+			font-size: 16px
+			font-weight: bold
+			cursor: pointer
+			padding: 10px
+			&_first::after 
+				content: '...'
+			&_last::before 
+				content: '...'
+			&_active 
+				color: #ef5b70
+		&__page:hover 
+			color: #ef5b70
+		&__button 
+			@extend %catalog__viewall__button
+		&__button:hover
+			@extend %catalog__viewall__button-hover
+		&__button-to-pages
+			@extend %catalog__viewall__button
+			&_fixed
+				position: fixed
+				bottom: 232px
+				right: calc(50% - 800px)
+			&_absolute
+				position: absolute
+				bottom: 40px
+				right: calc(50% - 655px)
+		&__button-to-pages:hover
+			@extend %catalog__viewall__button-hover
+
+select 
+	outline: none
+	border: none
+
+.sortby 
+	width: 70px
+	height: 30px
+	border-right: 1px solid #ebebeb
+	background-color: #ffffff
+	margin-left: 10px
+	text-align: center
+	line-height: 30px
+	color: #6f6e6e
+	font-size: 14px
+	font-weight: 400
+	cursor: pointer
+	&__catalog 
+		height: 30px
+		background-color: #ffffff
+		text-align: center
+		line-height: 30px
+		color: #6f6e6e
+		font-size: 14px
+		font-weight: 400
+		padding-left: 5px
+
+.show 
+	width: 70px
+	height: 30px
+	border-right: 1px solid #ebebeb
+	background-color: #ffffff
+	margin-left: 10px
+	text-align: center
+	line-height: 30px
+	color: #6f6e6e
+	font-size: 14px
+	font-weight: 400
+	&__catalog 
+		height: 30px
+		background-color: #ffffff
+		text-align: center
+		line-height: 30px
+		color: #6f6e6e
+		font-size: 14px
+		font-weight: 400
+		padding-left: 5px
+
+.product-box__man 
+	margin-bottom: 40px
+
+summary 
+	display: flex
+	justify-content: space-between
+	outline: none
+summary::-webkit-details-marker 
+	display: none
+summary::after 
+	content: '\25BC'
+	
+details[open] > summary::after 
+	content: '\25B2'
+details[open] > summary.catalog__navigation__head 
+	color: #ef5b70
+
+.goods__features 
+	color: #6f6e6e
+	font-size: 14px
+	font-weight: 700
+	line-height: 20px
+	text-transform: uppercase
+	margin-bottom: 25px
+	margin-top: 8px
+	width: 280px
+	&__pricerange 
+		display: flex
+		justify-content: space-between
+	&__range 
+		width: 100%
+
+.trending__categories__items 
+	display: inline
+
+.trending__categories__link 
+	color: #6f6e6e
+	font-size: 14px
+	font-weight: 400
+	line-height: 26px
+
+.size__selection 
+	display: flex
+	flex-flow: row wrap
+	&__input 
+		display: flex
+		width: 70px
+		align-items: center
+		&__text 
+			margin-left: 10px
+			color: #6f6e6e
+			font-family: "Open Sans"
+			font-size: 14px
+			font-weight: 400
+			line-height: 25px
+			text-transform: uppercase
+
+.pricerange 
+	color: #6f6e6e
+	font-family: "Open Sans"
+	font-size: 14px
+	font-weight: 400
+	line-height: 30px
+
+/* product_man.html -end- */
+
+// Стили компонента vcomp_sinpage.
+/* single_page.html -start- */
+
+/* .sinpage__slider */
+
+.sinpage__slider 
+	display: flex
+	align-items: center
+	justify-content: space-between
+	border: 1px solid #eaeaea
+	background-color: #f7f7f7
+	background-position: center
+	background-repeat: no-repeat
+	height: 777px
+	&__button 
+		display: block
+		width: 47px
+		height: 47px
+		background-color: #d8d8d8
+		color: #ffffff
+		font-size: 24px
+		font-weight: 400
+		line-height: 47px
+		text-align: center
+
+/* .sinpage__catalog */
+
+.sinpage__catalog__header 
+	margin-top: 45px
+	text-align: center
+
+h1.sinpage__catalog__head 
+	color: #4d4d4d
+	font-size: 24px
+	font-weight: 400
+	line-height: 20px
+	text-transform: uppercase
+
+.sinpage__product-box 
+	margin-bottom: 30px
+
+/* .sinpage__details */
+
+.sinpage__details 
+	width: 1140px
+	margin: 0 auto
+	min-height: 800px
+	border: 1px solid #eaeaea
+	background-color: #ffffff
+	display: flex
+	flex-flow: column wrap
+	align-items: center
+	position: relative
+	top: -75px
+	&__cart 
+		display: flex
+		justify-content: center
+		align-items: center
+		margin-top: 28px
+		width: 537px
+		height: 55px
+		border: 1px solid #ef5b70
+		background-color: #ffffff
+		margin-bottom: 135px
+	&__cart:hover .sinpage__buttonCart
+		-webkit-animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both
+		animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both
+	&__cart:active .sinpage__button__text
+		color: #ffffff
+	&__cart:active
+		background-color: #ef5b70
+
+.details
+	&__text 
+		display: flex
+		align-items: center
+		flex-flow: column wrap
+		&__text 
+			margin-top: 67px
+			text-align: center
+			width: 618px
+			color: #5e5e5e
+			font-size: 14px
+			font-weight: 300
+			line-height: 24px
+	&__label 
+		text-align: center
+		width: 150px
+		color: #f16d7f
+		font-size: 14px
+		font-weight: 700
+		line-height: 24px
+		text-transform: uppercase
+		margin-top: 73px
+		border-bottom: 1px solid #eaeaea
+	&__head 
+		text-align: center
+		margin-top: 17px
+		width: 260px
+		color: #4d4d4d
+		font-size: 18px
+		font-weight: 800
+		line-height: 24px
+		text-transform: uppercase
+	&__details 
+		display: flex
+		justify-content: space-around
+		width: 400px
+		margin-top: 28px
+	&__price 
+		margin-top: 37px
+		color: #ef5b70
+		font-size: 24px
+		font-weight: 700
+		line-height: 24px
+	&__parameters 
+		margin-top: 63px
+		display: flex
+		justify-content: space-between
+		width: 537px
+
+.pink__line 
+	width: 63px
+	height: 3px
+	background-color: #ef5b70
+
+.material 
+	color: #2f2f2f
+	font-size: 14px
+	font-weight: 700
+	line-height: 24px
+	text-transform: uppercase
+
+.grey__line 
+	width: 618px
+	height: 1px
+	background-color: #eaeaea
+	margin-top: 43px
+
+.choosing
+	&__head 
+		width: 110px
+		color: #2f2f2f
+		font-size: 14px
+		font-weight: 700
+		line-height: 24px
+		text-transform: uppercase
+	&__list 
+		margin-top: 16px
+		width: 144px
+		height: 35px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #bcbcbc
+		font-size: 13px
+		font-weight: 400
+		outline: none
+		text-indent: 16px
+	&__input 
+		margin-top: 16px
+		width: 134px
+		height: 35px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #bcbcbc
+		font-size: 13px
+		font-weight: 400
+		outline: none
+		text-indent: 16px
+		padding-right: 10px
+
+.sinpage__buttonCart 
+	display: flex
+	justify-content: space-between
+	align-items: center
+	width: 120px
+
+.sinpage__button__text 
+	color: #ef5b70
+	font-size: 16px
+	font-weight: 700
+	
+/* single_page.html -end- */
+
+// Стили компонента vcomp_cart.
+/* shopping_cart.html -start- */
+
+/* section.product-cart */
+
+.product-cart
+	margin-top: 90px
+	&__header
+		display: flex
+		justify-content: flex-start
+		border-bottom: 1px solid #eaeaea
+		padding-bottom: 20px
+	&__head
+		color: #222222
+		font-size: 13px
+		font-weight: 700
+		text-transform: uppercase
+		width: 128px
+		text-align: center
+	&__head_first
+		width: 558px
+		text-align: left
+	&__head_last
+		width: 70px
+	&__product
+		height: 160px
+		display: flex
+		align-items: center
+		justify-content: flex-start
+		border-bottom: 1px solid #eaeaea
+	&__pc-details
+		width: 558px
+		display: flex
+		justify-content: flex-start
+	&__img
+		width: 100px
+		height: 115px
+	&__img_img
+		width: 100%
+		height: 100%
+	&__text
+		text-align: left
+		margin-left: 20px
+		height: 115px
+	&__price
+		text-align: center
+		width: 128px
+		color: #656565
+		font-size: 13px
+		font-weight: 400
+	&__quantity
+		text-align: center
+		width: 128px
+	&__input
+		width: 34px
+		height: 30px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #656565
+		font-size: 13px
+		font-weight: 400
+		line-height: 30px
+		text-align: center
+		outline-style: none
+		padding: 0 10px 
+	&__shipping
+		text-align: center
+		width: 128px
+		color: #656565
+		font-size: 13px
+		font-weight: 400
+		text-transform: uppercase
+	&__subtotal
+		text-align: center
+		width: 128px
+		color: #656565
+		font-size: 13px
+		font-weight: 400
+	&__action
+		display: flex
+		justify-content: center
+		width: 70px
+	&__clear
+		display: block
+		width: 15px
+		height: 15px
+		color: white
+		font-size: 8px
+		font-weight: 400
+		text-transform: uppercase
+		background-color: #cccccc
+		border-radius: 7.5px
+		line-height: 15px
+		text-align: center
+	&__clear:hover
+		background-color: red
+	&__buttons
+		margin-top: 45px
+		display: flex
+		justify-content: space-between
+	&__button-clear, &__button-continue
+		display: block
+		text-align: center
+		line-height: 50px
+		width: 235px
+		height: 50px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #4a4a4a
+		font-size: 14px
+		font-weight: 700
+		text-transform: uppercase
+		transition: all 0.3s
+	&__button-clear:hover, &__button-continue:hover
+		transform: scale(1.03) 
+				
+.pc-details
+	&__head
+		display: block
+		margin-top: 13px
+		color: #222222
+		font-size: 13px
+		font-weight: 400
+		text-transform: uppercase
+		height: 37px
+	&__feature-color
+		font-size: 13px
+		font-weight: 300
+		line-height: 20px
+		margin-top: 10px
+	&__feature-size
+		font-size: 13px
+		font-weight: 300
+		line-height: 20px
+		
+/* section.order-details */
+
+.order-details
+	margin-top: 63px
+	margin-bottom: 80px
+	display: flex
+	justify-content: space-between
+	&__head
+		color: #222222
+		font-size: 16px
+		font-weight: 700
+		text-transform: uppercase
+		margin-bottom: 20px
+	&__shipping
+		height: 300px
+		width: 360px
+	&__total
+		width: 360px
+		background-color: #f5f3f3
+		display: flex
+		justify-content: center
+		flex-wrap: wrap
+
+.shipping
+	&__country, &__state, &__postcode
+		width: 345px
+		height: 45px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		line-height: 45px
+		text-indent: 18px
+		color: #b1b1b1
+		font-size: 13px
+		font-weight: 300
+		margin-bottom: 20px
+		outline: none
+		padding-right: 10px
+	&__state::placeholder, &__postcode::placeholder
+		color: #b1b1b1
+	&__button
+		display: block
+		width: 100px
+		height: 35px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #4a4a4a
+		font-size: 11px
+		font-weight: 700
+		text-transform: uppercase
+		line-height: 35px
+		text-align: center
+	&__answer
+		color: #f16d7f
+		font-size: 12px
+		margin-top: 5px
+		
+.coupon
+	&__text
+		color: #000000
+		font-size: 14px
+		font-weight: 300
+		margin-bottom: 24px
+	&__coupon-number
+		width: 345px
+		height: 45px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		line-height: 45px
+		text-indent: 18px
+		color: #b1b1b1
+		font-size: 13px
+		font-weight: 300
+		margin-bottom: 20px
+		outline: none
+		padding-right: 10px
+	&__coupon-number::placeholder
+		color: #b1b1b1
+	&__button
+		display: block
+		width: 118px
+		height: 35px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #4a4a4a
+		font-size: 11px
+		font-weight: 700
+		text-transform: uppercase
+		line-height: 35px
+		text-align: center
+	&__answer
+		color: #f16d7f
+		font-size: 12px
+		margin-top: 5px
+		
+.total
+	&__sub, &__grand, &__discount
+		display: flex
+		justify-content: flex-end
+		width: 275px
+	&__sub
+		margin-top: 40px
+		margin-bottom: 14px
+	&__discount
+		margin-bottom: 14px 
+	&__line
+		width: 275px
+		height: 1px
+		background-color: #e2e2e2
+		margin-top: 20px
+		margin-bottom: 17px
+	&__button
+		width: 273px
+		height: 50px
+		background-color: #f16d7f
+		color: #ffffff
+		font-size: 16px
+		font-weight: 700
+		text-transform: uppercase
+		line-height: 50px
+		text-align: center
+		margin-bottom: 42px
+		transition: all 0.3s
+	&__button:hover
+		color: #f16d7f
+		background-color: #ffffff
+		
+.sub
+	&__text, &__number
+		color: #4a4a4a
+		font-size: 11px
+		font-weight: 400
+		text-transform: uppercase
+	&__number
+		margin-left: 25px
+		
+.grand
+	&__text, &__number
+		color: #222222
+		font-size: 16px
+		font-weight: 700
+		text-transform: uppercase
+	&__number
+		color: #f16d7f
+		margin-left: 25px
+		
+/* shopping_cart.html -end- */
+
+// Стили компонента vcomp_checkout.
+/* checkout.html -start- */
+
+/* section.checkout */
+
+.checkout
+	display: flex
+	flex-flow: column wrap
+	justify-content: flex-start
+	margin-bottom: 90px
+	margin-top: 65px
+	&__item
+		color: #222222
+		font-size: 16px
+		font-weight: 700
+		line-height: 72px
+		text-transform: uppercase
+		border-bottom: 1px solid #e8e8e8
+	&__item_shipad
+		border-bottom: 1px solid #e8e8e8
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		margin-top: 25px
+	&__item_regform
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		width: 100%
+	&__item__inputform
+		margin-top: 50px
+		margin-bottom: 50px  
+	&__order__products
+		margin-top: 50px
+		margin-bottom: 50px
+	&__order__head
+		color: #222222
+		font-size: 15px
+		font-weight: 700
+		text-transform: uppercase
+		margin-bottom: 10px
+		background-color: #e6e6e6
+		line-height: 30px
+		padding-left: 15px
+		width: 1180px
+	&__order__log-actions
+		display: flex
+		flex-direction: column
+		margin-top: 34px
+	&__order__button
+		width: 273px
+		height: 50px
+		background-color: #f16d7f
+		color: #ffffff
+		font-size: 16px
+		font-weight: 700
+		text-transform: uppercase
+		line-height: 50px
+		text-align: center
+		transition: all 0.3s
+	&__order__button:hover
+		color: #f16d7f
+		background-color: #ffffff
+	&__order__answer
+		color: #f16d7f
+		padding-left: 5px
+		margin-top: 5px
+		margin-bottom: 30px 
+		font-size: 13px
+		height: 13px
+		
+.shipad
+	&__head
+		color: #222222
+		font-size: 16px
+		font-weight: 700
+		text-transform: uppercase
+		width: 1140px
+	&__reg
+		margin-left: 35px
+	&__reg-head
+		margin-top: 40px
+		color: #222222
+		font-size: 13px
+		font-weight: 400
+		text-transform: uppercase
+	&__reg-text
+		margin-top: 15px
+		margin-bottom: 34px
+		color: #b3b2b2
+		font-size: 13px
+		font-weight: 400
+	&__reg-choice
+		display: flex
+		align-items: center
+		margin-bottom: 20px
+	&__reg-check
+		position: relative
+	&__reg-checkactive
+		position: absolute
+		top: 6px
+		left: 4px
+	&__reg-ckeckactive-not
+		display: none
+	&__reg-choice-text
+		margin-left: 14px
+		color: #222222
+		font-size: 12px
+		font-weight: 400
+		text-transform: uppercase
+	&__reg-head-warn
+		margin-top: 34px
+		color: #222222
+		font-size: 13px
+		font-weight: 400
+		text-transform: uppercase
+	&__reg-pluses
+		margin-bottom: 15px
+		color: #b3b2b2
+		font-size: 13px
+		font-weight: 400
+	&__reg-button
+		display: block
+		margin-top: 40px
+		margin-bottom: 80px
+		width: 180px
+		height: 50px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #4a4a4a
+		font-size: 14px
+		font-weight: 700
+		text-transform: uppercase
+		line-height: 50px
+		text-align: center
+	&__checkbox
+		margin-top: 40px
+		margin-bottom: 30px
+	&__log
+		margin-right: 167px
+	&__log-auth
+		color: #222222
+		font-size: 12px
+		font-weight: 400
+		text-transform: uppercase
+		margin-bottom: 16px
+	&__log-input-e, &__log-input-p
+		outline-style: none
+		width: 380px
+		height: 45px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		margin-bottom: 23px
+		text-indent: 10px
+		padding-right: 10px
+	&__log-note
+		color: #ff0d0d
+		font-size: 13px
+		font-weight: 400
+		line-height: 20px
+	&__log-actions
+		display: flex
+		margin-top: 34px
+	&__log-button
+		display: block
+		width: 180px
+		height: 50px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #4a4a4a
+		font-size: 14px
+		font-weight: 700
+		text-transform: uppercase
+		line-height: 50px
+		text-align: center
+		margin-right: 10px
+	&__log-button_fixed
+		background-color: #cdcdcc 
+	&__log-forgot
+		display: block
+		color: #222222
+		font-size: 14px
+		font-weight: 400
+		line-height: 20px
+		margin-top: 24px
+		margin-left: 32px
+	&__log-forgot:hover
+		text-decoration: underline 
+
+/* checkout.html -end- */
+
+// Стили компонента vcomp_account.
+/* account.html -start- */
+
+/* section.account */
+
+.account
+	&__main
+		margin-top: 63px
+		margin-bottom: 80px 
+		display: flex
+		flex-flow: column
+		flex-wrap: wrap
+		justify-content: space-between
+	&__head
+		color: #222222
+		font-size: 16px
+		font-weight: 700
+		text-transform: uppercase
+		margin-bottom: 20px
+	&__info
+		display: flex
+	&__text
+		color: #000000
+		font-size: 14px
+		font-weight: 300
+		margin-bottom: 24px
+	&__button
+		display: block
+		margin-bottom: 10px 
+		width: 118px
+		height: 35px
+		border: 1px solid #eaeaea
+		background-color: #ffffff
+		color: #4a4a4a
+		font-size: 11px
+		font-weight: 700
+		text-transform: uppercase
+		line-height: 35px
+		text-align: center
+	&__answer
+		color: #f16d7f
+		padding-left: 5px
+		margin-top: 5px
+		font-size: 13px
+		height: 13px
+	&__notice
+		margin-bottom: 80px
+	&__form
+		display: flex
+		flex-direction: column
+		&__select
+			margin-top: 10px
+			margin-bottom: 10px
+			width: 25%
+			border: 1px solid black
+		&__text
+			margin-top: 10px
+			width: 25% 
+		&__checkbox
+			margin-top: 10px
+		&__submit
+			margin-top: 10px
+			width: 25%
+		&__file
+			margin-top: 10px
+		&__head
+			margin-top: 10px 
+		
+.login-form, .registration-form
+	margin-bottom: 30px

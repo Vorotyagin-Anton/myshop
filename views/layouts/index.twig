@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="vue_app">
+    <vcomp_header ref="vcomp_header"></vcomp_header>
+    <vcomp_nav ref="vcomp_nav" :current-page='currentPage' @change-current-page='changeCurrentPage'></vcomp_nav>
+    <component :is="getCurrentPage" :ref="getCurrentPage"></component>
+    <vcomp_social ref="vcomp_social"></vcomp_social>
+    <vcomp_nav-footer ref="vcomp_nav-footer"></vcomp_nav-footer>
+    <vcomp_footer ref="vcomp_footer"></vcomp_footer>
+    <vcomp_error ref="error"></vcomp_error>
+    <vcomp_buffer ref="buffer"></vcomp_buffer>
+</div>
+    <script src="https://kit.fontawesome.com/9405381f8b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/vcomp_header.js"></script>
+    <script src="js/vcomp_nav.js"></script>
+    <script src="js/vcomp_nav_drop.js"></script>
+    <script src="js/vcomp_home.js"></script>
+    <script src="js/vcomp_man.js"></script>
+    <script src="js/vcomp_women.js"></script>
+    <script src="js/vcomp_kids.js"></script>
+    <script src="js/vcomp_accesories.js"></script>
+    <script src="js/vcomp_featured.js"></script>
+    <script src="js/vcomp_hotdeals.js"></script>
+    <script src="js/vcomp_cart.js"></script>
+    <script src="js/vcomp_checkout.js"></script>
+    <script src="js/vcomp_account.js"></script>
+    <script src="js/vcomp_sinpage.js"></script>
+    <script src="js/vcomp_social.js"></script>
+    <script src="js/vcomp_nav-footer.js"></script>
+    <script src="js/vcomp_footer.js"></script>
+    <script src="js/vcomp_error.js"></script>
+    <script src="js/vcomp_buffer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

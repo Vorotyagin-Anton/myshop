@@ -12,8 +12,8 @@ return [
                 'host' => 'localhost',
                 'db' => 'myshop',
                 'charset' => 'UTF8',
-                'login' => 'root',
-                'password' => 'pae_954',
+                'login' => 'login',
+                'password' => 'password',
             ]
         ],
         'request' => [
